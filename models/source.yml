@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: glue-dbt-landing
+    description: "Fonte de dados meteorologicos brutos coletados pela API da Visual Crossing Weather. Inclui localização, timezone e registros diários de temperatura, umidade, precipitação, etc."
+    database: awsdatacatalog
+    schema: glue-dbt-landing
+    tables:
+      - name: clima
+        description: "Tabela com dados meteorologicos brutos coletados pela API da Visual Crossing Weather. Inclui localização, timezone e registros diários de temperatura, umidade, precipitação, etc."
+        columns:
+          - name: querycost
+            description: "Custo operacional da consulda na API"
+          - name: latitude
+            description: "Latitude da localização"
+          - name: longitude
+            description: "Longitude da localização"
+          - name: resolved_address
+            description: "Endereço da localização"
+          - name: address
+            description: "Endereço da localização passado na API"
+          - name: timezone
+            description: "Timezone da localização"
+          - name: tz_offset
+            description: "Offset do timezone da localização"              
+          - name: days
+            description: "Array de structs com os dados diários"              
+          - name: stations
+            description: "Array de structs com os dados das estações"              

@@ -1,0 +1,139 @@
+version: 2
+
+models:
+  - name: int_clima_diario
+    description: "Camada intermediária com dados meteorológicos diários extraídos da API, contendo apenas os campos brutos presentes"
+    columns:
+      - name: id_cidade
+        description: "Identificador único da cidade, gerado via hash MD5 do endereço."
+        tests:
+          - not_null
+
+      - name: cidade
+        description: "Nome da cidade (ex: Aracaju, BR)."
+        tests:
+          - not_null
+
+      - name: data
+        description: "Data da previsão meteorológica."
+        tests:
+          - not_null
+
+      - name: temperatura
+        description: "Temperatura média do dia."
+        tests:
+          - not_null
+      
+      - name: temperatura_max
+        description: "Temperatura máxima do dia."
+        tests:
+          - not_null
+      
+      - name: temperatura_min
+        description: "Temperatura mínima do dia."
+        tests:
+          - not_null
+      
+      - name: sensacao
+        description: "Sensação térmica média do dia."
+        tests:
+          - not_null
+      
+      - name: sensacao_max
+        description: "Sensação térmica máxima do dia."
+        tests:
+          - not_null
+      
+      - name: sensacao_min
+        description: "Sensação térmica mínima do dia."
+        tests:
+          - not_null
+      
+      - name: umidade
+        description: "Umidade média do dia."
+        tests:
+          - not_null
+      
+      - name: precipitacao
+        description: "Precipitação média do dia."
+        tests:
+          - not_null
+      
+      - name: prob_precipitacao
+        description: "Probabilidade de precipitação média do dia."
+        tests:
+          - not_null
+      
+      - name: area_precipitada
+        description: "Área precipitada média do dia."
+        tests:
+          - not_null
+      
+      - name: rajada_vento
+        description: "Rajada de vento média do dia."
+        tests:
+          - not_null
+      
+      - name: velocidade_vento
+        description: "Velocidade do vento média do dia."
+        tests:
+          - not_null
+      
+      - name: direcao_vento
+        description: "Direção do vento média do dia."
+        tests:
+          - not_null
+      
+      - name: indice_uv
+        description: "Índice UV médio do dia."
+        tests:
+          - not_null
+      
+      - name: cobertura_nuvens
+        description: "Cobertura de nuvens média do dia."
+        tests:
+          - not_null
+      
+      - name: visibilidade
+        description: "Visibilidade média do dia."
+        tests:
+          - not_null
+      
+      - name: nascer_sol
+        description: "Horário do nascer do sol."
+        tests:
+          - not_null
+      
+      - name: por_sol
+        description: "Horário do pôr do sol."
+        tests:
+          - not_null
+      
+      - name: fase_lua_valor
+        description: "Valor da fase da lua(0 a 1)."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 1
+      
+      - name: condicao
+        description: "Condição meteorológica."
+        tests:
+          - not_null
+      
+      - name: descricao
+        description: "Descrição meteorológica."
+        tests:
+          - not_null
+      
+      - name: fonte_dados
+        description: "Fonte dos dados meteorológicos."
+        tests:
+          - not_null
+      
+      - name: load_datetime
+        description: "Data e hora do carregamento dos dados."
+        tests:
+          - not_null
