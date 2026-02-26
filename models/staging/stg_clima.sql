@@ -1,5 +1,5 @@
 WITH base AS (
-    SELECT *
+    SELECT * 
     FROM {{ source('glue-dbt-landing', 'clima') }}
 ),
 
@@ -29,11 +29,11 @@ renamed AS (
         CAST(element.moonphase AS DOUBLE) AS fase_lua_valor,
         CAST(element.conditions AS VARCHAR) AS condicao,
         CAST(element.description AS VARCHAR) AS descricao,
-        CAST(element.source AS VARCHAR) AS fonte_dados,
+        CAST(element.source AS VARCHAR) as fonte_dados,
         CAST(current_timestamp AS VARCHAR) AS load_datetime
     FROM base AS t,
-        UNNEST(t.days) WITH ORDINALITY AS day_item (element, idx)
-)   
+         UNNEST(t.days) WITH ORDINALITY AS day_item (element, idx)
+)
 
-SELECT * 
+SELECT *
 FROM renamed
